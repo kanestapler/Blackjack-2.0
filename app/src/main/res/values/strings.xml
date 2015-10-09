@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Blackjack 2</string>
+    <string name="hitMe">Hit Me</string>
+    <string name="stay">Stay</string>
+    <string name="reset">Reset</string>
+</resources>

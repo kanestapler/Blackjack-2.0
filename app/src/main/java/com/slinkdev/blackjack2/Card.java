@@ -6,10 +6,12 @@ package com.slinkdev.blackjack2;
 public class Card {
     private String suite;
     private int value;
+    private String fullName;
 
-    public Card(String suiteInput, int valueInput) {
+    public Card(String suiteInput, int valueInput, String fullNameInput) {
         this.suite = suiteInput;
         this.value = valueInput;
+        this.fullName = fullNameInput;
     }
 
     public String getSuite() {
@@ -17,5 +19,13 @@ public class Card {
     }
     public int getValue() {
         return value;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

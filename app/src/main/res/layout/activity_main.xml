@@ -16,7 +16,6 @@
             android:id="@+id/userScore"
             android:layout_weight="1"
             android:textSize="@dimen/scoreSize"
-            android:layout_row="0"
             android:layout_column="0" />
 
         <TextView
@@ -26,7 +25,6 @@
             android:textAlignment="viewEnd"
             android:layout_weight="1"
             android:textSize="@dimen/scoreSize"
-            android:layout_row="0"
             android:layout_column="24" />
     </TableRow>
 
@@ -38,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/userCard"
-            android:layout_row="1"
             android:layout_column="0"
             android:layout_weight="1" />
 
@@ -46,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cpuCard"
-            android:layout_row="1"
             android:layout_column="1"
             android:layout_weight="1"
             android:textAlignment="viewEnd" />
@@ -80,8 +76,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reset"
-            android:id="@+id/resetButton"
+            android:text="@string/deal"
+            android:id="@+id/dealButton"
             android:layout_column="0"
             android:layout_weight="1" />
     </TableRow>

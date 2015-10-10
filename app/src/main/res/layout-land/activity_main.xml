@@ -81,7 +81,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reset"
+            android:text="@string/deal"
             android:id="@+id/resetButton"
             android:layout_column="0"
             android:layout_weight="1" />

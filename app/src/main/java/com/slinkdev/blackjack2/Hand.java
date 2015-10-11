@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class Hand {
     private TextView cardsView;
+    private TextView scoreView;
     private ArrayList<Card> cards = new ArrayList<>();
 
     public Hand() {
@@ -31,8 +32,12 @@ public class Hand {
         cards.add(x);
     }
 
-    public void clearTextView() {
+    public void clearCardsView() {
         cardsView.setText("");
+    }
+
+    public void clearScoreView() {
+        scoreView.setText("");
     }
 
     //Calculates what the best score is to return automatically (Only matters if there is an ace)
@@ -46,18 +51,28 @@ public class Hand {
         return calcWithXNumOfAces(numOfAces);
     }
 
-    private int calcWithXNumOfAces(int aces) {
+    private int calcWithXNumOfAces(int acesInput) {
+        int aces = acesInput;
         int score = 0;
         for (int i=0; i < cards.size(); i++) {
             score += cards.get(i).getValue();
         }
         while (aces > 0) {
-            score -= 10;
-            aces--;
-            if (score <= 21) {
+            if (score > 21) {
+                score -= 10;
+                aces--;
+            } else {
                 break;
             }
         }
         return score;
+    }
+
+    public void setScoreView(TextView scoreView) {
+        this.scoreView = scoreView;
+    }
+
+    public void refreshScoreView() {
+        this.scoreView.setText(String.valueOf(getScore()));
     }
 }

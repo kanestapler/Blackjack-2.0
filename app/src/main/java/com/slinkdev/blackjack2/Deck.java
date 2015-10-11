@@ -10,7 +10,7 @@ import java.util.Collections;
  * Created by stapk007 on 10/8/15.
  */
 public class Deck {
-    private ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<>();
 
     public Deck() {
         resetDeck();
@@ -21,11 +21,11 @@ public class Deck {
         for (int i = 2; i < 15; i++) {//Loop for each value
             for (int j = 0; j < 4; j++) {//Loop for each suite
                 if (j==0) {
-                    addCard("Heart", i);
+                    addCard("Hearts", i);
                 } else if (j==1) {
-                    addCard("Diamond", i);
+                    addCard("Diamonds", i);
                 } else if (j==2) {
-                    addCard("Spade", i);
+                    addCard("Spades", i);
                 } else if (j==3) {
                     addCard("Clubs", i);
                 }

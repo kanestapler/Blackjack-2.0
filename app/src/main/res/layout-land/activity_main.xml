@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/userScore"
+            android:id="@+id/userValue"
             android:layout_weight="1"
             android:textSize="@dimen/scoreSize"
             android:layout_row="0"
@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cpuScore"
+            android:id="@+id/cpuValue"
             android:textAlignment="viewEnd"
             android:layout_weight="1"
             android:textSize="@dimen/scoreSize"

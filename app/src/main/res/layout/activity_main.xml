@@ -1,85 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userValue"
+        android:textSize="@dimen/scoreSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userScore"
-            android:layout_weight="1"
-            android:textSize="@dimen/scoreSize"
-            android:layout_column="0" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cpuValue"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/scoreSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cpuScore"
-            android:textAlignment="viewEnd"
-            android:layout_weight="1"
-            android:textSize="@dimen/scoreSize"
-            android:layout_column="24" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userCard"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/userValue"
+        android:layout_alignParentStart="true" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cpuCard"
+        android:textAlignment="viewEnd"
+        android:layout_alignTop="@+id/userCard"
+        android:layout_alignEnd="@+id/cpuValue" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userCard"
-            android:layout_column="0"
-            android:layout_weight="1" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hitMe"
+        android:id="@+id/hitMeButton"
+        android:height="@dimen/actionButtonHeight"
+        android:width="@dimen/actionButtonWidth"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cpuCard"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:textAlignment="viewEnd" />
-    </TableRow>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stay"
+        android:id="@+id/stayButton"
+        android:height="@dimen/actionButtonHeight"
+        android:width="@dimen/actionButtonWidth"
+        android:layout_below="@+id/hitMeButton"
+        android:layout_alignStart="@+id/hitMeButton" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deal"
+        android:id="@+id/dealButton"
+        android:width="@dimen/actionButtonWidth"
+        android:height="@dimen/actionButtonHeight"
+        android:layout_below="@+id/stayButton"
+        android:layout_alignStart="@+id/stayButton" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hitMe"
-            android:id="@+id/hitMeButton"
-            android:layout_column="0"
-            android:layout_weight="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gamesPlayedText"
+        android:id="@+id/gamesPlayedText"
+        android:textSize="@dimen/bottomTextSize"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stay"
-            android:id="@+id/stayButton"
-            android:layout_weight="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gamesWonText"
+        android:id="@+id/gamesWonText"
+        android:textStyle="bold"
+        android:textSize="@dimen/bottomTextSize"
+        android:layout_above="@+id/gamesPlayedText"
+        android:layout_alignParentStart="true" />
 
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gamesWonValue"
+        android:textSize="@dimen/bottomTextSize"
+        android:layout_above="@+id/gamesPlayedText"
+        android:layout_centerHorizontal="true" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gamesPlayedValue"
+        android:layout_below="@+id/gamesWonValue"
+        android:layout_alignEnd="@+id/gamesWonValue"
+        android:textSize="@dimen/bottomTextSize" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/deal"
-            android:id="@+id/dealButton"
-            android:layout_column="0"
-            android:layout_weight="1" />
-    </TableRow>
-
-</TableLayout>
+</RelativeLayout>

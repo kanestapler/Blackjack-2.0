@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="scoreSize">25sp</dimen>
+    <dimen name="actionButtonWidth">160dp</dimen>
+    <dimen name="actionButtonHeight">80dp</dimen>
+    <dimen name="bottomTextSize">18dp</dimen>
 </resources>

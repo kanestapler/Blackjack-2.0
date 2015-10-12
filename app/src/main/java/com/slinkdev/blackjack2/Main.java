@@ -7,13 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Main extends AppCompatActivity {
 
     private Deck mainDeck = new Deck();
     private Hand userHand = new Hand();
     private Hand cpuHand = new Hand();
-    private int userScore;
-    private int cpuScore;
+    private int gamesWon;
+    private int gamesPlayed;
+    private TextView gamesWonValue;
+    private TextView gamesPlayedValue;
 
 
     @Override
@@ -21,20 +25,24 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView userScoreView = (TextView) findViewById(R.id.userScore);
-        TextView cpuScoreView = (TextView) findViewById(R.id.cpuScore);
+        TextView userScoreView = (TextView) findViewById(R.id.userValue);
+        TextView cpuScoreView = (TextView) findViewById(R.id.cpuValue);
         TextView userCardView = (TextView) findViewById(R.id.userCard);
         TextView cpuCardView = (TextView) findViewById(R.id.cpuCard);
+        gamesWonValue = (TextView) findViewById(R.id.gamesWonValue);
+        gamesPlayedValue = (TextView) findViewById(R.id.gamesPlayedValue);
         Button hitMeButton = (Button) findViewById(R.id.hitMeButton);
         Button stayButton = (Button) findViewById((R.id.stayButton));
         Button dealButton = (Button) findViewById(R.id.dealButton);
 
         userHand.setCardsView(userCardView);
-        userHand.setScoreView(userScoreView);
+        userHand.setValueView(userScoreView);
         cpuHand.setCardsView(cpuCardView);
-        cpuHand.setScoreView(cpuScoreView);
-        userScoreView.setText(String.valueOf(userScore));
-        cpuScoreView.setText(String.valueOf(cpuScore));
+        cpuHand.setValueView(cpuScoreView);
+        gamesWonValue.setText("0");
+        gamesPlayedValue.setText("0");
+        userScoreView.setText(String.valueOf(userHand.getHandValue()));
+        cpuScoreView.setText(String.valueOf(cpuHand.getHandValue()));
 
         hitMeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +66,8 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        userScore = 0;
-        cpuScore = 0;
+        gamesPlayed = 0;
+        gamesWon = 0;
         resetTable();
     }
 
@@ -69,9 +77,9 @@ public class Main extends AppCompatActivity {
         userHand.emptyHand();
         cpuHand.emptyHand();
         userHand.clearCardsView();
-        userHand.clearScoreView();
+        userHand.clearValueView();
         cpuHand.clearCardsView();
-        cpuHand.clearScoreView();
+        cpuHand.clearValueView();
         Card card1 = mainDeck.drawCard();
         Card card2 = mainDeck.drawCard();
         Card card3 = mainDeck.drawCard();
@@ -81,7 +89,8 @@ public class Main extends AppCompatActivity {
         addCardToTextView(card2, userHand);
         cpuHand.addCard(card3);
         addCardToTextView(card3, cpuHand);
-        userHand.refreshScoreView();
+        userHand.refreshValueView();
+        cpuHand.refreshValueView();
         enableHitMe();
         enableStay();
         disableDeal();
@@ -91,7 +100,7 @@ public class Main extends AppCompatActivity {
         Card cardToAdd = mainDeck.drawCard();
         x.addCard(cardToAdd);
         addCardToTextView(cardToAdd, x);
-        x.refreshScoreView();
+        x.refreshValueView();
         if (isScoreOver21(x)) {
             disableHitMe();
             disableStay();
@@ -103,11 +112,11 @@ public class Main extends AppCompatActivity {
     }
 
     private boolean isScoreOver21(Hand x) {
-        return (x.getScore() > 21);
+        return (x.getHandValue() > 21);
     }
 
     private boolean isScoreOver16(Hand x) {
-        return (x.getScore() > 16);
+        return (x.getHandValue() > 16);
     }
 
     private void userStays() {
@@ -119,24 +128,26 @@ public class Main extends AppCompatActivity {
         Hand winner = whoWon(userHand, cpuHand);
         if (winner == userHand) {
             //User Won
-            //Add Score to user
+            gamesWon++;
             //Display pop up saying congrats
         } else {
             //CPU won
-            //Add Score to CPU
             //Display pop up saying sorry
         }
+        gamesPlayed++;
+        gamesWonValue.setText(String.valueOf(gamesWon));
+        gamesPlayedValue.setText(String.valueOf(gamesPlayed));
         enableDeal();
     }
 
     private Hand whoWon(Hand user, Hand cpu) {
-        if (user.getScore() > 21) {
+        if (user.getHandValue() > 21) {
             return cpu;
-        } else if (cpu.getScore() > 21) {
+        } else if (cpu.getHandValue() > 21) {
             return user;
-        } else if (cpu.getScore() >= user.getScore()) {
+        } else if (cpu.getHandValue() >= user.getHandValue()) {
             return cpu;
-        } else if (user.getScore() > cpu.getScore()) {
+        } else if (user.getHandValue() > cpu.getHandValue()) {
             return user;
         } else {
             Log.d("Main.java", "Can't decide who won");
@@ -167,13 +178,5 @@ public class Main extends AppCompatActivity {
     private void enableDeal(){
         Button dealButton = (Button) findViewById(R.id.dealButton);
         dealButton.setEnabled(true);
-    }
-
-    private void addScoretoUser(){
-        userScore += 1;
-    }
-
-    private void addScoreToCpu() {
-        cpuScore += 1;
     }
 }

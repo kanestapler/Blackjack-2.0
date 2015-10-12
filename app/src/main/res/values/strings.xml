@@ -3,4 +3,6 @@
     <string name="hitMe">Hit Me</string>
     <string name="stay">Stay</string>
     <string name="deal">Deal</string>
+    <string name="gamesPlayedText">Games Played:</string>
+    <string name="gamesWonText">Games Won:</string>
 </resources>

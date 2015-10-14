@@ -6,4 +6,6 @@
     <dimen name="actionButtonWidth">160dp</dimen>
     <dimen name="actionButtonHeight">80dp</dimen>
     <dimen name="bottomTextSize">18dp</dimen>
+    <dimen name="resultTextSize">25dp</dimen>
+    <dimen name="buttonTextSize">18dp</dimen>
 </resources>

@@ -1,8 +1,12 @@
 package com.slinkdev.blackjack2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ public class Main extends AppCompatActivity {
     private int gamesPlayed;
     private TextView gamesWonValue;
     private TextView gamesPlayedValue;
+    private TextView resultText;
 
 
     @Override
@@ -29,6 +34,7 @@ public class Main extends AppCompatActivity {
         TextView cpuCardView = (TextView) findViewById(R.id.cpuCard);
         gamesWonValue = (TextView) findViewById(R.id.gamesWonValue);
         gamesPlayedValue = (TextView) findViewById(R.id.gamesPlayedValue);
+        resultText = (TextView) findViewById(R.id.resultText);
         Button hitMeButton = (Button) findViewById(R.id.hitMeButton);
         Button stayButton = (Button) findViewById((R.id.stayButton));
         Button dealButton = (Button) findViewById(R.id.dealButton);
@@ -39,6 +45,7 @@ public class Main extends AppCompatActivity {
         cpuHand.setValueView(cpuScoreView);
         gamesWonValue.setText("0");
         gamesPlayedValue.setText("0");
+        clearResultText();
         userScoreView.setText(String.valueOf(userHand.getHandValue()));
         cpuScoreView.setText(String.valueOf(cpuHand.getHandValue()));
 
@@ -48,6 +55,8 @@ public class Main extends AppCompatActivity {
                 hitMe(userHand);
                 if (isScoreOver21(userHand)) {
                     userStays();
+                    disableHitMe();
+                    disableStay();
                 }
             }
         });
@@ -69,15 +78,35 @@ public class Main extends AppCompatActivity {
         resetTable();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                openSettings();
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+        }
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     private void resetTable() {
         mainDeck = new Deck();
         mainDeck.shuffleDeck();
         userHand.emptyHand();
         cpuHand.emptyHand();
-        userHand.clearCardsView();
-        userHand.clearValueView();
-        cpuHand.clearCardsView();
-        cpuHand.clearValueView();
+        resetCardsValueResultViews();
         Card card1 = mainDeck.drawCard();
         Card card2 = mainDeck.drawCard();
         Card card3 = mainDeck.drawCard();
@@ -94,15 +123,19 @@ public class Main extends AppCompatActivity {
         disableDeal();
     }
 
+    private void resetCardsValueResultViews() {
+        userHand.clearCardsView();
+        userHand.clearValueView();
+        cpuHand.clearCardsView();
+        cpuHand.clearValueView();
+        clearResultText();
+    }
+
     private void hitMe(Hand x) {
         Card cardToAdd = mainDeck.drawCard();
         x.addCard(cardToAdd);
         addCardToTextView(cardToAdd, x);
         x.refreshValueView();
-        if (isScoreOver21(x)) {
-            disableHitMe();
-            disableStay();
-        }
     }
 
     private void addCardToTextView(Card cardInput, Hand handInput) {
@@ -127,10 +160,10 @@ public class Main extends AppCompatActivity {
         if (winner == userHand) {
             //User Won
             gamesWon++;
-            //Display pop up saying congrats
+            resultText.setText(R.string.winningResultText);
         } else {
             //CPU won
-            //Display pop up saying sorry
+            resultText.setText((R.string.LosingResultText));
         }
         gamesPlayed++;
         gamesWonValue.setText(String.valueOf(gamesWon));
@@ -176,5 +209,8 @@ public class Main extends AppCompatActivity {
     private void enableDeal(){
         Button dealButton = (Button) findViewById(R.id.dealButton);
         dealButton.setEnabled(true);
+    }
+    private void clearResultText() {
+        resultText.setText("");
     }
 }

@@ -12,7 +12,8 @@
         android:id="@+id/userValue"
         android:textSize="@dimen/scoreSize"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
         android:textAlignment="viewEnd"
         android:textSize="@dimen/scoreSize"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +49,8 @@
         android:height="@dimen/actionButtonHeight"
         android:width="@dimen/actionButtonWidth"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/buttonTextSize" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +60,8 @@
         android:height="@dimen/actionButtonHeight"
         android:width="@dimen/actionButtonWidth"
         android:layout_below="@+id/hitMeButton"
-        android:layout_alignStart="@+id/hitMeButton" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/buttonTextSize" />
 
     <Button
         android:layout_width="wrap_content"
@@ -67,7 +71,8 @@
         android:width="@dimen/actionButtonWidth"
         android:height="@dimen/actionButtonHeight"
         android:layout_below="@+id/stayButton"
-        android:layout_alignStart="@+id/stayButton" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/buttonTextSize" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,5 +109,13 @@
         android:layout_below="@+id/gamesWonValue"
         android:layout_alignEnd="@+id/gamesWonValue"
         android:textSize="@dimen/bottomTextSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/resultTextSize" />
 
 </RelativeLayout>
